@@ -8,16 +8,15 @@ public class DataStructureTest {
 		// TODO Auto-generated method stub
 		
 		Scanner sc = new Scanner(System.in);
-		
-		
-		/*
-		 * Testing Queue and Stack here
-		 */
-		
 		System.out.println("Enter list of numbers separated by a coma ");
 		
 		String list = sc.next();
 		String [] nums = list.split(",");
+		
+
+		/*
+		 * Testing Queue and Stack here
+		 */
 		
 		QueueLinkedList<String> queue = new QueueLinkedList<String>();
 		StackLinkedList<String> stack = new StackLinkedList<String>();
@@ -40,8 +39,36 @@ public class DataStructureTest {
 			System.out.println("Iterating over a node with item "+i);
 		}
 		
+		
 		/*
 		 * Queue and Stack test ends here
+		 */
+		
+		/**
+		 * Testing Deque Assignment
+		 */
+		
+		/*
+		Deque<String> deque = new Deque<String>();
+		
+		for(String num:nums)
+		{
+			deque.addFirst(num);
+		}
+		
+		deque.print();
+		deque.reversePrint();
+		
+		System.out.println("\nTesting Iterable interface");
+		
+		for(String i:deque)//implementing Iterable interface made this for statement possible
+		{
+			System.out.println("Iterating over a node with item "+i);
+		}
+		
+		*/
+		/*
+		 * Deque assignment test ends here
 		 */
 		
 	}
