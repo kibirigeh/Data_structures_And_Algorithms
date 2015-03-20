@@ -72,7 +72,8 @@ public class DataStructureTest {
 			System.out.println("Iterating over a node with item "+i+" in the deque");
 		}
 		
-		System.out.println("\n modifying "+randQ.dequeue()+" from randQ\n");
+		//System.out.println("\n modifying "+randQ.dequeue()+" from randQ\n");
+		
 		
 		for(String i:randQ)//implementing Iterable interface made this for statement possible
 		{

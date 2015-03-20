@@ -50,7 +50,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		}
 		
 		Item item = null;
-		int random = StdRandom.uniform(0, size-1);
+		int random = StdRandom.uniform(0, size);
 		item=queue[random];
 		
 		queue[random]=queue[size-1];
@@ -66,7 +66,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	}
 	
 	public Item sample(){// return (but do not remove) a random item
-		int random = StdRandom.uniform(0, size-1);
+		int random = StdRandom.uniform(0,size);
 		return queue[random];
 	}
 	
@@ -75,7 +75,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		Item [] tempQueue = queue;
 		queue = (Item []) new Object [N];//resize the array by making it twice what it ws earlier
 		//copy the list items back
-		for(int i=0;i<tempQueue.length;i++)
+		for(int i=0;i<size;i++)
 		{
 			queue[i]=tempQueue[i];
 		}
