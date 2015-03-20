@@ -2,6 +2,9 @@ package DataStructures;
 
 import java.util.Scanner;
 
+import algorithms_Course_1.Deque;
+import algorithms_Course_1.RandomizedQueue;
+
 public class DataStructureTest {
 
 	public static void main(String[] args) {
@@ -18,6 +21,7 @@ public class DataStructureTest {
 		 * Testing Queue and Stack here
 		 */
 		
+		/*
 		QueueLinkedList<String> queue = new QueueLinkedList<String>();
 		StackLinkedList<String> stack = new StackLinkedList<String>();
 		
@@ -39,36 +43,42 @@ public class DataStructureTest {
 			System.out.println("Iterating over a node with item "+i);
 		}
 		
-		
+		*/
 		/*
 		 * Queue and Stack test ends here
 		 */
 		
 		/**
-		 * Testing Deque Assignment
+		 * Testing Deque and RandomizedQueue Assignment
 		 */
 		
-		/*
+		
 		Deque<String> deque = new Deque<String>();
+		RandomizedQueue<String>randomizedQueue = new RandomizedQueue<String>();
 		
 		for(String num:nums)
 		{
 			deque.addFirst(num);
+			randomizedQueue.enqueue(num);
 		}
 		
-		deque.print();
-		deque.reversePrint();
+		//deque.print();
+		//deque.reversePrint();
 		
 		System.out.println("\nTesting Iterable interface");
 		
 		for(String i:deque)//implementing Iterable interface made this for statement possible
 		{
-			System.out.println("Iterating over a node with item "+i);
+			System.out.println("Iterating over a node with item "+i+" in the deque");
+		}
+		for(String i:randomizedQueue)//implementing Iterable interface made this for statement possible
+		{
+			System.out.println("Iterating over a node with item "+i+" in the queue");
 		}
 		
-		*/
+	
 		/*
-		 * Deque assignment test ends here
+		 * Deque and RandomizedQueue assignment test ends here
 		 */
 		
 	}

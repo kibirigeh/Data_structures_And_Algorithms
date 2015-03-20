@@ -24,7 +24,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		return size;
 	}
 	
-	public void enque(Item item){
+	public void enqueue(Item item){
 		if(item == null)
 		{
 			throw new java.lang.NullPointerException();
