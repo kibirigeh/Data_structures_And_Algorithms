@@ -17,9 +17,9 @@ public class Deque<Item> implements Iterable<Item>
 		Node pre;
 	}
 	
-	Node first;//front of deque
-	Node last;//back of deque
-	int size;//size of deque
+	private Node first;//front of deque
+	private Node last;//back of deque
+	private int size;//size of deque
 	
 	public Deque(){//create deque
 		size=0;
@@ -180,11 +180,15 @@ public class Deque<Item> implements Iterable<Item>
 		@Override
 		public Item next() {
 			// TODO Auto-generated method stub
+			if(current==null)
+			{
+				throw new java.util.NoSuchElementException();
+			}
 			Item item = current.item;
 			current=current.next;
 			return item;
 		}
-
+		
 		@Override
 		public void remove() {
 			// TODO Auto-generated method stub

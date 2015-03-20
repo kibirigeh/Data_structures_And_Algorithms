@@ -11,16 +11,13 @@ import edu.princeton.cs.introcs.StdOut;
  */
 
 public class Subset {
-
-	static int k;
-	static RandomizedQueue<String> randQ;
-	
+		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		if(args.length>=1)
 		{
-			k=Integer.parseInt(args[0]);
-			randQ=new RandomizedQueue<String>();
+			int k=Integer.parseInt(args[0]);
+			RandomizedQueue<String> randQ = new RandomizedQueue<String>();
 			
 			// read strings from std input:
 			String [] s = StdIn.readLine().split(" ");
