@@ -8,26 +8,30 @@ import edu.princeton.cs.introcs.StdRandom;
 
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
+	/*
+	 * A randomized queue is similar to a stack or queue, except that the 
+	 * item removed is chosen uniformly at random from items in the data structure.
+	 */
 
 	private int size;
 	private Item [] queue;
 	
 	@SuppressWarnings("unchecked")
-	public RandomizedQueue(){
+	public RandomizedQueue(){ // construct an empty randomized queue
 		
 		queue= (Item[]) new Object[2]; //create queue using generic array 
 		size=0;//not necessary
 	}
 	
-	public boolean isEmpty(){
+	public boolean isEmpty(){// is the queue empty?
 		return size==0;
 	}
 	
-	public int size(){
+	public int size(){// return the number of items on the queue
 		return size;
 	}
 	
-	public void enqueue(Item item){
+	public void enqueue(Item item){ // add the item
 		if(item == null)
 		{
 			throw new java.lang.NullPointerException();
@@ -40,7 +44,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		size++;
 	}
 	
-	public Item dequeue(){
+	public Item dequeue(){ // remove and return a random item
 		if(size()<=0){
 			throw new java.util.NoSuchElementException();
 		}
@@ -61,7 +65,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		return item;
 	}
 	
-	public Item sample(){
+	public Item sample(){// return (but do not remove) a random item
 		int random = StdRandom.uniform(0, size-1);
 		return queue[random];
 	}
@@ -78,7 +82,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	}
 
 	@Override
-	public Iterator<Item> iterator() 
+	public Iterator<Item> iterator() // return an independent iterator over items in random order
 	{
 		// TODO Auto-generated method stub
 		return new ListIterator();
