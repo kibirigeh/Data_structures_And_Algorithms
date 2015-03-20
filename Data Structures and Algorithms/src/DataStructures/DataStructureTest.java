@@ -54,12 +54,12 @@ public class DataStructureTest {
 		
 		
 		Deque<String> deque = new Deque<String>();
-		RandomizedQueue<String>randomizedQueue = new RandomizedQueue<String>();
+		RandomizedQueue<String>randQ = new RandomizedQueue<String>();
 		
 		for(String num:nums)
 		{
 			deque.addFirst(num);
-			randomizedQueue.enqueue(num);
+			randQ.enqueue(num);
 		}
 		
 		//deque.print();
@@ -71,7 +71,10 @@ public class DataStructureTest {
 		{
 			System.out.println("Iterating over a node with item "+i+" in the deque");
 		}
-		for(String i:randomizedQueue)//implementing Iterable interface made this for statement possible
+		
+		System.out.println("\n modifying "+randQ.dequeue()+" from randQ\n");
+		
+		for(String i:randQ)//implementing Iterable interface made this for statement possible
 		{
 			System.out.println("Iterating over a node with item "+i+" in the queue");
 		}

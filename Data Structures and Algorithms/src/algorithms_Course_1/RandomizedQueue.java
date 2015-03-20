@@ -4,12 +4,15 @@ package algorithms_Course_1;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import edu.princeton.cs.introcs.StdRandom;
+
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
 	private int size;
 	private Item [] queue;
 	
+	@SuppressWarnings("unchecked")
 	public RandomizedQueue(){
 		
 		queue= (Item[]) new Object[2]; //create queue using generic array 
@@ -63,6 +66,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		return queue[random];
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void resize(int N){
 		Item [] tempQueue = queue;
 		queue = (Item []) new Object [N];//resize the array by making it twice what it ws earlier
@@ -86,7 +90,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		@Override
 		public boolean hasNext() {
 			// TODO Auto-generated method stub
-			return i >= 0;
+			return i >= 0 && i<size;
 		}
 
 		@Override
