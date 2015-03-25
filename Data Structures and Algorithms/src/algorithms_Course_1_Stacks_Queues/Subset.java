@@ -1,4 +1,4 @@
-package algorithms_Course_1;
+package algorithms_Course_1_Stacks_Queues;
 
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
@@ -11,7 +11,8 @@ import edu.princeton.cs.introcs.StdOut;
  */
 
 public class Subset {
-		
+	
+	 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		if(args.length>=1)
@@ -31,5 +32,6 @@ public class Subset {
 			}
 		}
 	}
+	
 
 }
