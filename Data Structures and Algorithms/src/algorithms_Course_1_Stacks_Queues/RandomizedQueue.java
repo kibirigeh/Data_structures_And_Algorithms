@@ -1,4 +1,4 @@
-package algorithms_Course_1;
+package algorithms_Course_1_Stacks_Queues;
 
 
 import java.util.Iterator;

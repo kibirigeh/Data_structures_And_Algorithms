@@ -2,8 +2,8 @@ package DataStructures;
 
 import java.util.Scanner;
 
-import algorithms_Course_1.Deque;
-import algorithms_Course_1.RandomizedQueue;
+import algorithms_Course_1_Stacks_Queues.Deque;
+import algorithms_Course_1_Stacks_Queues.RandomizedQueue;
 
 public class DataStructureTest {
 
