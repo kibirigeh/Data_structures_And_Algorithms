@@ -39,7 +39,7 @@ public class Brute {
             set[i] = new Point(x, y);
         }
         
-        //not necessary
+        //Sort tpo create ordering that example depicted
         Arrays.sort(set);//call java system merge sort on point set to make point co-relation easier
        
         /*

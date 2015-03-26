@@ -36,13 +36,13 @@ public class Point implements Comparable<Point>{
         StdDraw.line(this.x, this.y, that.x, that.y);
     }
 
-    // slope between this point and that point
+    
+ // slope between this point and that point
     public double slopeTo(Point that) {
-        /* YOUR CODE HERE */
-    	if (compareTo(that) == 0) return Double.NEGATIVE_INFINITY;
-		else if (this.y == that.y) return +0;
-		else if (this.x == that.x) return Double.POSITIVE_INFINITY;
-		else return (new Double(that.y - this.y)/ new Double(that.x - this.x));
+        if(that.y==this.y && that.x==this.x) return Double.NEGATIVE_INFINITY;
+    	else if(that.y==this.y) return 0.0;
+        else if(that.x==this.x) return Double.POSITIVE_INFINITY;
+		return ((double)(that.y-this.y))/((that.x-this.x));
     }
 
     // is this point lexicographically smaller than that one?
@@ -68,15 +68,12 @@ public class Point implements Comparable<Point>{
     }
     
     private class Slope_Order implements Comparator<Point>{//comparator class to use slope as an ordering
-		@Override
-		public int compare(Point q1, Point q2) {
-            Point p = new Point(x, y);
-            double d = p.slopeTo(q1) - p.slopeTo(q2);
-            if (d > 0)
-                return -1;
-            if (d < 0)
-                return 1;
-            return 0;
+		public int compare(Point a, Point b) {
+			double slopeA = slopeTo(a);
+			double slopeB = slopeTo(b);
+			if(slopeA>slopeB) return 1;
+			else if(slopeA<slopeB) return -1;
+			return 0;
 		}
     }
 
