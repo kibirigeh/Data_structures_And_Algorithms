@@ -3,6 +3,8 @@ package algorithms_Course_1_MergeSort_QuickSort;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.princeton.cs.introcs.In;
 import edu.princeton.cs.introcs.StdDraw;
@@ -10,7 +12,7 @@ import edu.princeton.cs.introcs.StdOut;
 
 public class Fast {
 	
-	private static  ArrayList<ArrayList<Point>> lines;//listy of lines found in fast algorithm
+	private static Map<String,ArrayList<Point>> lines;//Map of lines found using fast algorithm
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -28,16 +30,19 @@ public class Fast {
         
         //set of N points
         Point [] set = new Point [N];
-        lines = new ArrayList<ArrayList<Point>>();
+        Point [] sorted = new Point[N];
+        
+        lines = new HashMap<String,ArrayList<Point>>();
         
         //read N points into set 
         for (int i = 0; i < N; i++) {
             int x = in.readInt();
             int y = in.readInt();
             set[i] = new Point(x, y);
+            sorted[i]=new Point(x,y);
+            
         }	
         
-        Arrays.sort(set);
         
         //----------------------------------------------------------------------------------------------------------------------------------------------------
           
@@ -47,9 +52,9 @@ public class Fast {
         for(int i=0;i<N;i++)// loop over each point and find the lines that can be made with the point as a start
         {
         	ArrayList<Point> line = new ArrayList<Point>();//a list of points that share the same slope with the origin point i
-        	Point [] sorted = set;//a set of the points sorted by slope with i
+        	//sorted set of the points sorted by slope with i
         	Arrays.sort(sorted,set[i].SLOPE_ORDER);
-            	
+           
         	Double slope = set[i].slopeTo(sorted[0]);//Slope variable that must make a pattern for a point to be considered
         	
         	for(Point p : sorted)//search through all points sorted by slope order with origin
@@ -62,7 +67,7 @@ public class Fast {
         			if(line.size()>3)//if the line found has less than 4 points don't bother with it
         			{
         				Collections.sort(line);//sort the line and check if its already been added to our list of lines found
-        				if(lines.contains(line)==false)lines.add(line);
+        				if(lines.containsKey(line.toString())==false)lines.put(line.toString(),line);
         			}
         			slope=set[i].slopeTo(p);//change the slope to try and find next pattern
         			line = new ArrayList<Point>();//change the line to a new line
@@ -73,7 +78,7 @@ public class Fast {
         }
         
         //for all the lines found, print/draw the lines
-        for(ArrayList<Point> line : lines)
+        for(ArrayList<Point> line : lines.values())
         {
         	printLine(line);
         }
