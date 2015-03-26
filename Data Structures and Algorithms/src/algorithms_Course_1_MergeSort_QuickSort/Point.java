@@ -69,11 +69,14 @@ public class Point implements Comparable<Point>{
     
     private class Slope_Order implements Comparator<Point>{//comparator class to use slope as an ordering
 		@Override
-		public int compare(Point arg0, Point arg1) {
-			// TODO Auto-generated method stub
-			double s0 = slopeTo(arg0);
-			double s1 = slopeTo(arg1);
-			return Double.compare(s0,s1);
+		public int compare(Point q1, Point q2) {
+            Point p = new Point(x, y);
+            double d = p.slopeTo(q1) - p.slopeTo(q2);
+            if (d > 0)
+                return -1;
+            if (d < 0)
+                return 1;
+            return 0;
 		}
     }
 
