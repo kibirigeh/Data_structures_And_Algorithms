@@ -54,17 +54,17 @@ public class Brute {
 			for(int j=i+1;j<set.length;j++)
 			{
 				Point q=set[j];
-				q.draw();
+				//q.draw();
 				
 				for(int k = j+1;k<set.length;k++)
 				{
 					Point r=set[k];
-					r.draw();
+					//r.draw();
 					
 					for(int l = k+1;l<set.length;l++)
 					{
 						Point s=set[l];
-						s.draw();
+						//s.draw();
 						if(sameLine(p,q,r,s))
 						{
 							p.drawTo(q);
@@ -89,7 +89,7 @@ public class Brute {
 	 */
 	private static boolean sameLine(Point p,Point q,Point r,Point s )
 	{
-		if(p.slopeTo(q)==p.slopeTo(r) && p.slopeTo(r)==p.slopeTo(s)) return true;
+		if(p.slopeTo(q)==q.slopeTo(r) && r.slopeTo(s)==s.slopeTo(p)) return true;
 		return false;
 	}
 }
