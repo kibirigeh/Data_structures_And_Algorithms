@@ -55,28 +55,36 @@ public class Fast {
         	ArrayList<Point> line = new ArrayList<Point>();//a list of points that share the same slope with the origin point i
         	//sorted set of the points sorted by slope with i
         	Arrays.sort(sorted,set[i].SLOPE_ORDER);
-        	for(Point p: sorted)
-        	{
-        		StdOut.println(p.toString());
-        	}
         	
-        	Double slope = set[i].slopeTo(sorted[0]);//Slope variable that must make a pattern for a point to be considered 	
-        	for(Point p : sorted)//search through all points sorted by slope order with origin
+        	Double prevSlope = sorted[i].slopeTo(sorted[1]);//first slope to be used in pattern recognition
+        	
+        	for(int j=1;j<N;j++)//loop through all the patterns based on slope similarity
         	{
-        		if(set[i].compareTo(p)==0) addTo(line,p);//origin is always the first point in the sorted set
-        		else if(slope==set[i].slopeTo(p)) addTo(line,p);//if the previous slope is the same slope found at point p then add to line
-        		else {//otherwise
-        			if(line.size()>2)//if the line found has less than 4 points don't bother with it
+        		Double currSlope=sorted[0].slopeTo(sorted[j]);//the current slope between original point and sorted point j
+    
+        		if(currSlope.compareTo(prevSlope)==0)	addTo(line,sorted[j]);//if the slope pattern matches add the point
+        		else{//if the slope pattern did not match
+        			if(line.size()>2) // commit the line if the points are 4 or more  
         			{
-        				Collections.sort(line);//sort the line and check if its already been added to our list of lines found
-        				if(lines.containsKey(line.toString())==false)lines.put(line.toString(),line);
+        				addTo(line,sorted[0]);
+        				Collections.sort(line);//sort the points in the line to achieve a desired order
+        				lines.put(line.toString(),line);//put the line in the map making sure its distinct
         			}
-        			slope=set[i].slopeTo(p);//change the slope to try and find next pattern
-        			line = new ArrayList<Point>();//change the line to a new line
-        			addTo(line,set[i]);//add the origin point to the new line
-        			addTo(line,p);//add the point with the slope we are now looking for
+        			line=new ArrayList<Point>();//create a new line for the rest of the points
+        			prevSlope=currSlope;
+        			addTo(line,sorted[j]);
         		}
         	}
+        	/*
+    		 * add the last line found if any
+    		 * This is usually a vertical line
+    		 */
+        	if(line.size()>2)
+    		{
+    			addTo(line,sorted[0]);
+    			Collections.sort(line);
+    			lines.put(line.toString(),line);
+    		}
         }
         
         //for all the lines found, print/draw the lines
