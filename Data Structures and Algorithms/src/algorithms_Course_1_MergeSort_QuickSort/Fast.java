@@ -55,13 +55,18 @@ public class Fast {
         	ArrayList<Point> line = new ArrayList<Point>();//a list of points that share the same slope with the origin point i
         	//sorted set of the points sorted by slope with i
         	Arrays.sort(sorted,set[i].SLOPE_ORDER);
+        	for(Point p: sorted)
+        	{
+        		StdOut.println(p.toString());
+        	}
+        	
         	Double slope = set[i].slopeTo(sorted[0]);//Slope variable that must make a pattern for a point to be considered 	
         	for(Point p : sorted)//search through all points sorted by slope order with origin
         	{
         		if(set[i].compareTo(p)==0) addTo(line,p);//origin is always the first point in the sorted set
         		else if(slope==set[i].slopeTo(p)) addTo(line,p);//if the previous slope is the same slope found at point p then add to line
         		else {//otherwise
-        			if(line.size()>3)//if the line found has less than 4 points don't bother with it
+        			if(line.size()>2)//if the line found has less than 4 points don't bother with it
         			{
         				Collections.sort(line);//sort the line and check if its already been added to our list of lines found
         				if(lines.containsKey(line.toString())==false)lines.put(line.toString(),line);
