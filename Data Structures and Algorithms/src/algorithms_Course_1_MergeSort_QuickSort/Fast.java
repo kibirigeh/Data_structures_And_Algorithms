@@ -56,7 +56,7 @@ public class Fast {
         	//sorted set of the points sorted by slope with i
         	Arrays.sort(sorted,set[i].SLOPE_ORDER);
         	
-        	Double prevSlope = sorted[i].slopeTo(sorted[1]);//first slope to be used in pattern recognition
+        	Double prevSlope = (N>1)?sorted[0].slopeTo(sorted[1]):(sorted[0].slopeTo(sorted[0]));//first slope to be used in pattern recognition
         	
         	for(int j=1;j<N;j++)//loop through all the patterns based on slope similarity
         	{
@@ -110,11 +110,10 @@ public class Fast {
 	 * Utility function to print out a line if it has more than 3 points
 	 */
 	private static void printLine(ArrayList<Point> line ){
-		line.get(0).drawTo(line.get(1));
+		line.get(0).drawTo(line.get(line.size()-1));
 		StdOut.print(line.get(0).toString()+" -> ");
 		
 		for(int i=1;i<line.size();i++){
-			line.get(i-1).drawTo(line.get(i));
 			
 			if(i!=line.size()-1){
 				StdOut.print(line.get(i).toString() + " -> ");
