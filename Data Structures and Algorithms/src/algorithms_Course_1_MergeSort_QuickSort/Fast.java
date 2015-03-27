@@ -57,9 +57,11 @@ public class Fast {
            
         	Double slope = set[i].slopeTo(sorted[0]);//Slope variable that must make a pattern for a point to be considered
         	
+        	set[i].draw();//draw Point
+        	
         	for(Point p : sorted)//search through all points sorted by slope order with origin
         	{
-        		p.draw();//draw point
+        		
         		
         		if(set[i].compareTo(p)==0) addTo(line,p);//origin is always the first point in the sorted set
         		else if(slope==set[i].slopeTo(p)) addTo(line,p);//if the previous slope is the same slope found at point p then add to line
