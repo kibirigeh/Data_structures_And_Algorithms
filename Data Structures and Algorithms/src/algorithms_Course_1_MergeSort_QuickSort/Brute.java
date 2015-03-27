@@ -67,9 +67,7 @@ public class Brute {
 						//s.draw();
 						if(sameLine(p,q,r,s))
 						{
-							p.drawTo(q);
-							q.drawTo(r);
-							r.drawTo(s);
+							p.drawTo(s);
 							StdOut.println(p.toString() + " -> " + q.toString() + " -> " + r.toString() + " -> " + s.toString());
 						}
 					}
