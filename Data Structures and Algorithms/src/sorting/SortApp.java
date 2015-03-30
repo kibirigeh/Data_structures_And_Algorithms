@@ -2,6 +2,8 @@ package sorting;
 
 import java.util.Scanner;
 
+import algorithms_Course_1_MergeSort_QuickSort.Quick;
+
 
 public class SortApp {
 
@@ -22,7 +24,7 @@ public class SortApp {
 		System.out.print("Before : ");
 		print(list);
 		
-		Shellsort.sort(list);//sorting algorithm used
+		Quick.Sort_3Way(list);//sorting algorithm used
 		System.out.print("After : ");
 		print(list);
 		
