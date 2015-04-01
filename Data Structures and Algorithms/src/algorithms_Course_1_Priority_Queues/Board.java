@@ -1,6 +1,7 @@
 package algorithms_Course_1_Priority_Queues;
 
 import edu.princeton.cs.algs4.MinPQ;
+import edu.princeton.cs.introcs.In;
 
 public class Board {
 
@@ -10,7 +11,7 @@ public class Board {
 	
 	public Board(int [][] blocks)// construct a board from an N-by-N array of blocks (where blocks[i][j] = block in row i, column j)
 	{
-		int N=blocks.length;
+		this.N=blocks.length;
 		board = new int [N*N];
 		int k=0;
 		for(int i=0;i<N;i++){
@@ -130,26 +131,59 @@ public class Board {
 	{
 		int [][] a2D = new int[N][N];
 		int k=0;
+		
 		for(int i=0;i<N;i++){
 			for(int j=0;j<N;j++){
 				a2D[i][j]=a[k++];
 			}
 		}
+
 		//exchange 
-		int temp =  a2D [((x%N)%x)] [x%N];
-		a2D [((x%N)%x)] [x%N] = a2D [((y%N)%y)] [y%N];
-		a2D [((y%N)%y)] [y%N]=temp;
+		int x1=(x!=0)?((x%N)%x):0,y1=(x!=0)?(x%N):0;
+		int x2=(y!=0)?((y%N)%y):0,y2=(y!=0)?(y%N):0;
+		
+		int temp =  a2D [x1] [x2];
+		a2D [x1] [x2] = a2D [y1] [y2];
+		a2D [y1] [y2]=temp;
 		
 		return a2D;
 	}
 	
 	private int dst(int a,int b)//utility function to get distance between 2 points
 	{
-		int x1=((a%N)%a),y1=(a%N);
-		int x2=((b%N)%a),y2=(b%N);
-	
+		
+		int x1=getRow(a),y1=getCol(a),x2=getRow(b),y2=getCol(b);
+		
+		System.out.println(a+" is " +x1+" , "+y1);
+		System.out.println(b+" is "+ x2+" , "+y2);
+		
 		int dst = (int) Math.sqrt( Math.pow((double)(x2-x1),2) + Math.pow((double)(y2-y1),2) );
 		
 		return Math.abs(dst)+1;
+	}
+	
+	private int getCol(int a)
+	{
+		if(a<N)return a;
+		return getCol(a%N);
+	}
+	
+	private int getRow(int a)
+	{
+		if(a<N) return a;
+		return (getRow(a/N));
+	}
+	
+	public static void main(String[] args) // unit tests (not graded)
+	{
+		// create initial board from file
+	    In in = new In(args[0]);
+	    int N = in.readInt();
+	    int[][] blocks = new int[N][N];
+	    for (int i = 0; i < N; i++)
+	        for (int j = 0; j < N; j++)
+	            blocks[i][j] = in.readInt();
+	    Board initial = new Board(blocks);
+	    System.out.println(initial.toString());
 	}
 }
