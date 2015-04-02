@@ -1,6 +1,7 @@
 package algorithms_Course_1_Priority_Queues;
 
-import edu.princeton.cs.algs4.MinPQ;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
@@ -52,7 +53,7 @@ public class Board {
 	
 	public Iterable<Board> neighbors()// all neighboring boards
 	{
-		MinPQ<Board> pq = new MinPQ<Board>();
+		List<Board> boards = new ArrayList<Board>();
 		
 		int left=blankSpace-1;
 		int right=blankSpace+1;
@@ -61,22 +62,22 @@ public class Board {
 	
 		if( (left>=0 && left<(N*N) && (left%N)!=N-1) ){
 			//left can not be in leftmost column and must be on the board
-			pq.insert(new Board(get2DWithExch(board,blankSpace,left)));
+			boards.add(new Board(get2DWithExch(board,blankSpace,left)));
 		}
 		if( (right>=0 && right<(N*N) && (right%N)!=0) ){
 			//right can not be in rightmost column and must be on the board
-			pq.insert(new Board(get2DWithExch(board,blankSpace,right)));
+			boards.add(new Board(get2DWithExch(board,blankSpace,right)));
 		}
 		if( (up>=0 && up<(N*N)) ){
 			//up must be on the board
-			pq.insert(new Board(get2DWithExch(board,blankSpace,up)));
+			boards.add(new Board(get2DWithExch(board,blankSpace,up)));
 		}
 		if( (down>=0 && down<(N*N)) ){
 			//down must be on the board
-			pq.insert(new Board(get2DWithExch(board,blankSpace,down)));
+			boards.add(new Board(get2DWithExch(board,blankSpace,down)));
 		}
 		
-		return pq; 
+		return boards; 
 	}
 	
 	public String toString()// string representation of this board (in the output format specified below)
@@ -130,20 +131,14 @@ public class Board {
 	{
 		int [][] a2D = new int[N][N];
 		int k=0;
-		
 		for(int i=0;i<N;i++){
 			for(int j=0;j<N;j++){
-				a2D[i][j]=a[k++];
+				a2D[i][j]=a[k];//copy into new 2D array
+				if(k==x)a2D[i][j]=a[y];//exchange x with y
+				if(k==y)a2D[i][j]=a[x];//exchange y with x
+				k++;
 			}
-		}
-
-		//exchange 
-		int x1=getRow(x),y1=getCol(x);
-		int x2=getRow(y),y2=getCol(y);
-		
-		int temp =  a2D [x1] [x2];
-		a2D [x1] [x2] = a2D [y1] [y2];
-		a2D [y1] [y2]=temp;
+		}	
 		
 		return a2D;
 	}
@@ -167,7 +162,7 @@ public class Board {
 		return (a==0)?(0):(a-1)%N;
 	}
 	
-	/*
+/*	
 	public static void main(String[] args) // unit tests (not graded)
 	{
 		// create initial board from file
@@ -178,6 +173,12 @@ public class Board {
 	        for (int j = 0; j < N; j++)
 	            blocks[i][j] = in.readInt();
 	    Board initial = new Board(blocks);
-	    System.out.println(initial.hamming());
-	}*/
+	    
+	    for(Board b: initial.neighbors())
+	    {
+	    	 System.out.println(b.toString());
+	    	 System.out.println(b.manhattan());
+	    }
+	}
+*/
 }
