@@ -1,7 +1,6 @@
 package algorithms_Course_1_Priority_Queues;
 
 import edu.princeton.cs.algs4.MinPQ;
-import edu.princeton.cs.introcs.In;
 
 public class Board {
 
@@ -41,7 +40,7 @@ public class Board {
 	{
 		int manhattan=0;
 		for(int i=0;i<board.length;i++){
-			if(board[i]-1!=(i)&& (board[i]!=0)) manhattan+=dst(board[i]-1,i);
+			if(board[i]-1!=(i)&& (board[i]!=0)) manhattan+=dst(board[i],i+1);
 		}
 		return manhattan;
 	}
@@ -139,8 +138,8 @@ public class Board {
 		}
 
 		//exchange 
-		int x1=(x!=0)?((x%N)%x):0,y1=(x!=0)?(x%N):0;
-		int x2=(y!=0)?((y%N)%y):0,y2=(y!=0)?(y%N):0;
+		int x1=getRow(x),y1=getCol(x);
+		int x2=getRow(y),y2=getCol(y);
 		
 		int temp =  a2D [x1] [x2];
 		a2D [x1] [x2] = a2D [y1] [y2];
@@ -149,31 +148,26 @@ public class Board {
 		return a2D;
 	}
 	
-	private int dst(int a,int b)//utility function to get distance between 2 points
+	private int dst(int a,int b)//utility function to get distance between 2 points in 2d
 	{
 		
-		int x1=getRow(a),y1=getCol(a),x2=getRow(b),y2=getCol(b);
-		
-		System.out.println(a+" is " +x1+" , "+y1);
-		System.out.println(b+" is "+ x2+" , "+y2);
-		
-		int dst = (int) Math.sqrt( Math.pow((double)(x2-x1),2) + Math.pow((double)(y2-y1),2) );
-		
-		return Math.abs(dst)+1;
+		int x1=getRow(a),y1=getCol(a),x2=getRow(b),y2=getCol(b);	
+		int dst =(int) Math.ceil(Math.sqrt( Math.pow((double)(x2-x1),2) + Math.pow((double)(y2-y1),2) ));	
+		return Math.abs(dst);
 	}
 	
-	private int getCol(int a)
+	private int getRow(int a)//given a 1D index returns the row in 2D eg. (a,0)
 	{
-		if(a<N)return a;
-		return getCol(a%N);
+		return (a==0)?(0):(a-1)/N;
 	}
 	
-	private int getRow(int a)
+	private int getCol(int a)//given a 1D index returns the col in 2D eg. (0,a)
 	{
-		if(a<N) return a;
-		return (getRow(a/N));
+		
+		return (a==0)?(0):(a-1)%N;
 	}
 	
+	/*
 	public static void main(String[] args) // unit tests (not graded)
 	{
 		// create initial board from file
@@ -184,6 +178,6 @@ public class Board {
 	        for (int j = 0; j < N; j++)
 	            blocks[i][j] = in.readInt();
 	    Board initial = new Board(blocks);
-	    System.out.println(initial.toString());
-	}
+	    System.out.println(initial.hamming());
+	}*/
 }
