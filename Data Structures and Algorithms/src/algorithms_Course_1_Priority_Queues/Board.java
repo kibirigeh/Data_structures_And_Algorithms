@@ -1,6 +1,7 @@
 package algorithms_Course_1_Priority_Queues;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Board {
@@ -8,11 +9,13 @@ public class Board {
 	private int [] board;
 	private int N;
 	private int blankSpace;
+	private int manhattanDst;//cache the manhattan to beat the time
+	private int hammingCount;
 	
 	public Board(int [][] blocks)// construct a board from an N-by-N array of blocks (where blocks[i][j] = block in row i, column j)
 	{
-		this.N=blocks.length;
-		board = new int [N*N];
+		this.N=blocks.length;//set the dimensions
+		board = new int [N*N];//using a 1D array for less memory usage
 		int k=0;
 		for(int i=0;i<N;i++){
 			for(int j=0;j<N;j++){
@@ -21,14 +24,20 @@ public class Board {
 				k++;
 			}
 		}
+		
+		this.manhattanDst=this.getManhattan();//cache the manhattan
+		this.hammingCount=this.gethamming();//cache the hamming
 	}
 	
 	public int dimension()// board dimension N
 	{
 		return N;
 	}
-	
 	public int hamming()// number of blocks out of place
+	{
+		return hammingCount;
+	}
+	private int gethamming()//utility to find the hamming count
 	{
 		int needFix = 0;
 		for(int i=0;i<board.length;i++){
@@ -38,6 +47,11 @@ public class Board {
 	}
 	
 	public int manhattan()// sum of Manhattan distances between blocks and goal
+	{
+		return manhattanDst;
+	}
+	
+	private int getManhattan()//private utility to set the manhattan dst
 	{
 		int manhattan=0;
 		for(int i=0;i<board.length;i++){
@@ -117,13 +131,8 @@ public class Board {
 	{
 		if (y == this) return true;
 		if (y == null) return false;
-		if (y.getClass() != this.getClass()) return false;
-		
-		Board that = (Board) y;
-		
-		if(this.board != that.board) return false;
-		if(this.dimension() != that.dimension()) return false;
-		
+		if (!(y instanceof Board)) return false;
+		if (!Arrays.equals(this.board, ((Board)y).board))return false;
 		return true;
 	}
 	
@@ -143,12 +152,11 @@ public class Board {
 		return a2D;
 	}
 	
-	private int dst(int a,int b)//utility function to get distance between 2 points in 2d
+	private int dst(int a,int b)//utility function to get manhattan distance between 2 points in 2d
 	{
 		
 		int x1=getRow(a),y1=getCol(a),x2=getRow(b),y2=getCol(b);	
-		int dst =(int) Math.ceil(Math.sqrt( Math.pow((double)(x2-x1),2) + Math.pow((double)(y2-y1),2) ));	
-		return Math.abs(dst);
+		return Math.abs(x2-x1) + Math.abs(y2-y1);
 	}
 	
 	private int getRow(int a)//given a 1D index returns the row in 2D eg. (a,0)
@@ -180,5 +188,5 @@ public class Board {
 	    	 System.out.println(b.manhattan());
 	    }
 	}
-*/
+	*/
 }
