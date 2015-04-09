@@ -60,6 +60,7 @@ public class BST<Key extends Comparable<Key>,Value> {
 	{
 		if(v==null){delete(k);return;}//if value inserted is null then delete that key from BST
 		root = put(root,k,v);//from the root find where to insert the value v
+		assert check();
 	}
 	private Node put(Node n,Key k, Value v)//utility function to insert a value into BST and return the node where its inserted
 	{
