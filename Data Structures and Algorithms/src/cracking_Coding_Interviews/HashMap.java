@@ -2,68 +2,71 @@ package cracking_Coding_Interviews;
 
 import java.util.Scanner;
 
-import edu.princeton.cs.introcs.StdOut;
 import algorithms_Course_1_BST.BST;
 
+/*
+ * My implementation of a Hash map utilizing BST's in a 
+ * separate chaining implementation 
+ * 
+ * Can remove worst case complexity by using redBlack BST instead of BST chains.
+ */
 
 public class HashMap<Key extends Comparable<Key>,Value> {	
-	private int N;
-	private int M;
+	private int N;//Size of HashMap
+	private int M;//Number of chains
 	private BST<Key,Value> [] table;//Array of BST's
 	
-	public HashMap()
+	public HashMap()//construct a HashMap with 5 chains
 	{
 		this(5);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")//construct a HashMap with m chains
 	public HashMap(int m)
 	{
 		this.N=0;	
 		this.M=m;
-		this.table = (BST<Key,Value> []) new BST[M];
-		for(int i=0;i<M;i++) table[i] = new BST<Key,Value>();
+		this.table = (BST<Key,Value> []) new BST[M];//declare chains
+		for(int i=0;i<M;i++) table[i] = new BST<Key,Value>();//init chains
 	}
 	
-	public boolean isEmpty()
+	public boolean isEmpty()//is HashMap empty
 	{
 		return size()==0;
 	}
 	
-	public int size()
+	public int size()//get size of HashMap O(n) where n is the number of chains
 	{
 		for(BST<Key, Value> bst: table)
 		{
-			System.out.println("Bst size "+bst.size());
-			for (Key s : bst.keys()) StdOut.println(s + " " + bst.get(s));
 			this.N+=bst.size();
 		}
 		return this.N;
 	}
 	
-	private int hash(Key k)
+	private int hash(Key k)//hash function to get index for lookup O(1)
 	{
 		return (k.hashCode() & 0x7fffffff)%M;
 	}
 	
-	public void put(Key k,Value v)
+	public void put(Key k,Value v)//insert/Update <key,Value> into HashMap O(log n) from BST insert worst case O(n) if tree is totally unbalanced
 	{
 		int index = hash(k);
 		table[index].put(k, v);
 	}
 	
-	public Value get(Key k)
+	public Value get(Key k)//get value of key k from HashMap. O(log n) from BST search worst case O(n) if tree is totally unbalanced
 	{
 		int index = hash(k);
 		return table[index].get(k);
 	}
 	
-	public boolean contains(Key k)
+	public boolean contains(Key k)//true/False if key k exists. O(log n) from BST search worst case O(n) if tree is totally unbalanced
 	{
 		return get(k)!=null;
 	}
 	
-	public void delete(Key k)
+	public void delete(Key k)//delete a key k from HashMap. O(log n) from BST delete worst case O(n) if tree is totally unbalanced
 	{
 		int index = hash(k);
 		table[index].delete(k);
