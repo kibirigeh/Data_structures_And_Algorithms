@@ -70,8 +70,8 @@ public class BST<Key extends Comparable<Key>,Value> {
 		else if(cmp>0) n.right = put(n.right,k,v);//if key k is greater then search and put in right branch of tree
 		else{//otherwise if the key is equal then we found our node so just put in current node
 			n.value=v;
-			n.N=(1+size(n.left)+size(n.right));
 		}
+		n.N=(1+size(n.left)+size(n.right));
 		return n;
 	}
 	
@@ -318,7 +318,7 @@ public class BST<Key extends Comparable<Key>,Value> {
         for (String s : st.levelOrder())
             StdOut.println(s + " " + st.get(s));
 
-        StdOut.println();
+        StdOut.println("Size is "+st.size());
 
         for (String s : st.keys())
             StdOut.println(s + " " + st.get(s));
