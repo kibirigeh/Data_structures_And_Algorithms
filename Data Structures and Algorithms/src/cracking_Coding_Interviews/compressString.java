@@ -16,7 +16,7 @@ public class compressString {
 	}
 	/*
 	 * method compress solves in O(n) time;
-	 * Uses the buffer to append a pattern char and its freq to a new string
+	 * Uses the buffer to append a pattern char and its freq to a new string (String concatenation will take more time).
 	 * Then compares if the compression is useful or not
 	 */
 	public static String compress(String a)
