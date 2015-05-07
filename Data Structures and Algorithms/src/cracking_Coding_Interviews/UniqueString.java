@@ -4,8 +4,8 @@ public class UniqueString {
 
 	/*
 	 *algorithm to test if all characters in string are unique 
-	 *stringUnique1 uses extra datastructure
-	 *stringUnique2 does not
+	 *stringUnique1 uses extra datastructure O(n)
+	 *stringUnique2 does not O(n)
 	 */
 	
 	public static void main(String[] args) {
