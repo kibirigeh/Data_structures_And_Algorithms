@@ -13,6 +13,7 @@ public class LinkedList<Item> {
 	
 	private Node root;
 	private int size;
+	private int kth;
 	
 	public LinkedList() {
 		size=0;
@@ -110,6 +111,47 @@ public class LinkedList<Item> {
 		System.out.println(r.item);
 	}
 	
+	public Node findKthToLast(Node n,int k)//utility to find kth element in list
+	{
+		if(n.next==null){
+			kth++;
+			if(kth==k)return n;
+			return null;
+		}
+		Node temp = findKthToLast(n.next,k);
+		if(kth==k){	
+			kth++;
+			return n;
+		}
+		kth++;
+		return temp;
+	}
+	
+	public void findKthToLast(int k)//find kth item in list
+	{
+		kth=1;
+		Node temp = findKthToLast(root,k);
+		if(temp!=null){
+			System.out.println("Item "+k+" is "+temp.item);
+		}
+		else{
+			System.out.println("No "+k+"th item in list");
+		}
+		kth=0;
+	}
+	
+	private int printNthToLast(Node n,int k)//utility to print kth item in list
+	{
+		if(n==null)return 0;
+		int i=printNthToLast(n.next,k)+1;
+		if(i==k)System.out.println("Item "+k+" is "+n.item);
+		return i;
+	}
+	
+	public void printNthToLast(int k)//print kth item in list
+	{
+		printNthToLast(root,k);
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		LinkedList<String> list = new LinkedList<String>();
@@ -122,5 +164,6 @@ public class LinkedList<Item> {
 		list.find("abc3");
 		list.find("abc5");
 		list.reversePrint();
+		list.printNthToLast(2);
 	}
 }
