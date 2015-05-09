@@ -1,6 +1,8 @@
 package cracking_Coding_Interviews;
 
-public class LinkedList<Item> {
+import java.util.Random;
+
+public class LinkedList<Item extends Comparable<Item>> {
 	/*
 	 * My version of a generic linked list
 	 * Only core functions implemented
@@ -100,6 +102,12 @@ public class LinkedList<Item> {
 	public void reversePrint()//reverse print the list
 	{
 		reversePrint(root);
+		
+	}
+	
+	public void testPartition(Item p){
+		System.out.println("partitioning based on "+p);
+		reversePrint(partition(root,p));
 	}
 	
 	private void reversePrint(Node r)//recursively reverse print a list from Node r
@@ -152,18 +160,66 @@ public class LinkedList<Item> {
 	{
 		printNthToLast(root,k);
 	}
+
+	public Node partition(Node n,Item x)//Method to partition singly linked list based on item x
+	{
+		if(n==null)return null;
+		Node Head=null,less=null,great=null,Body=null,t=n;
+		while(t!=null){
+			System.out.println("looking at "+t.item);
+			int cmp = t.item.compareTo(x);
+			Node temp = new Node();
+			temp.item=t.item;
+			if(cmp<0){
+				System.out.println("Adding "+temp.item+" to less than list");
+				if(Head==null){
+					Head=temp;
+					less=Head;
+					System.out.println("Adding "+Head.item+" to Head of Lees than list");
+				}
+				else{
+					less.next=temp;
+					System.out.println("Adding "+less.item+" to body of Lees than list");
+					less=temp;
+					
+				}
+			}
+			else{
+				System.out.println("Adding "+temp.item+" to Greater than list");
+				if(Body==null){
+					Body=temp;
+					great=Body;
+					System.out.println("Adding "+Body.item+" to Head of greater than list");
+				}
+				else
+				{
+					great.next=temp;
+					System.out.println("Adding "+great.item+" to body of greater than list");
+					great=temp;
+				}
+			}
+			t=t.next;
+		}
+		less.next=Body;
+		return Head;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		LinkedList<String> list = new LinkedList<String>();
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		 Random rand = new Random();
 		for(int i=1;i<21;i++){
-			list.add("abc"+i);
+			int rNum =(int) rand.nextInt((20 - 1) + 1) + 1;
+			list.add(rNum);
 		}
-		list.delete("abc5");
-		list.delete("abc2");
 		list.print();
-		list.find("abc3");
-		list.find("abc5");
+		list.delete(10);
+		list.delete(3);
+		list.print();
+		list.find(9);
+		list.find(5);
 		list.reversePrint();
 		list.printNthToLast(2);
+		//list.testPartition(6);
 	}
+
 }
