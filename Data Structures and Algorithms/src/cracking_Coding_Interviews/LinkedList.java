@@ -203,6 +203,32 @@ public class LinkedList<Item extends Comparable<Item>> {
 		less.next=Body;
 		return Head;
 	}
+	
+	public int Sum(Node n,int exp){
+		if(n==null)return 0;
+		return (int) (((Integer) n.item) * Math.pow(10,(double) exp))+(Sum(n.next, exp++));
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Node addNodes(Node A,Node B){
+		Node sum=null,sumIt=null;
+		int a = Sum(A,0)+Sum(B,0);
+		String aS=String.valueOf(a);
+		for(int i=(aS.length()-1);i>=0;i--){
+			Node t = new Node();
+			t.item=(Item) ((Object)aS.charAt(i));
+			System.out.print(t.item);
+			if(sum==null){
+				sum=t;
+				sum.next=sumIt;
+			}
+			else{
+				sumIt=t;
+				sumIt=sumIt.next;
+			}
+		}
+		return sum;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		LinkedList<Integer> list = new LinkedList<Integer>();
