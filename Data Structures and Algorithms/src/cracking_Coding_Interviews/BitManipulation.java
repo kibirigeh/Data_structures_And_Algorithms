@@ -19,6 +19,8 @@ public class BitManipulation {
 		bit=2;//1<<1=0010
 		System.out.println("Num "+num+" clear bit "+bit+" is "+clearBit(num,bit));
 		System.out.println("Num "+num+" clearMSBThrough bit "+bit+" is "+clearBit(num,bit));
+		
+		System.out.println("bitsUpdated :  "+updateBits(1024,19,2,6));
 	}
 	
 	/*
@@ -54,5 +56,19 @@ public class BitManipulation {
 	public static int updateBit(int num,int i,int v){
 		int mask = ~(1<<i);
 		return (num & mask) | (v<<i);
+	}
+	/*
+	 * num =  10000000000, m=10011, i=2, j = 6
+	 * Merge m into num from position j to i
+	 * e.g result = 10001001100 
+	 */
+	public static int updateBits(int num,int m,int i,int j){
+		int allones = ~0;//11111111
+		int left = allones<<(j+1);//11100000
+		int right = ((1<<i)-1);//00000011
+		int mask=left|right;//11100011 //mask with bits j through i cleared 
+		int num_cleared = num & mask;//10000000000 //clear bits j through i in num
+		int m_Shifted = m<<i;//00001001100   left shift m i positions
+		return num_cleared | m_Shifted;//10001001100
 	}
 }
