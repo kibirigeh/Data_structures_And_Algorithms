@@ -71,4 +71,26 @@ public class BitManipulation {
 		int m_Shifted = m<<i;//00001001100   left shift m i positions
 		return num_cleared | m_Shifted;//10001001100
 	}
+	/*
+	 * Method to print binary representation of a double between 1 and 0;
+	 */
+	public String getBinary(double num){
+		if(num>=1||num<=0)return "ERROR";
+		StringBuilder binary = new StringBuilder();
+		binary.append(".");
+		while(num>0){
+			if(binary.length()>=32)return "ERROR";
+			double r = num*2;
+			if(r>=1){
+				binary.append(1);
+				num=r-1;
+			}
+			else
+			{
+				binary.append(0);
+				num=r;
+			}
+		}
+		return binary.toString();
+	}
 }
