@@ -93,4 +93,15 @@ public class BitManipulation {
 		}
 		return binary.toString();
 	}
+	/*
+	 * Function to return how many bits it takes to transform a number A to B
+	 * A = 31 B = 14 returns 2
+	 */
+	public static int bitsRequired(int A,int B){
+		int count = 0;
+		for(int C = A^B;C!=0; C = C & (C-1)){
+			count++;
+		}
+		return count;
+	}
 }
