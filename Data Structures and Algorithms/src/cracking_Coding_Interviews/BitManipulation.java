@@ -104,4 +104,13 @@ public class BitManipulation {
 		}
 		return count;
 	}
+	/*
+	 * Function that swaps odd bits with even bits
+	 * e.g 0101 -> 1010
+	 * 32 bit mask for 32 bit integer  
+	 */
+	public static int swapOddEven(int x){
+		return (((x & 0xaaaaaaaa)>>1)|((x & 0x55555555)<<1)); 
+	}
+	
 }
