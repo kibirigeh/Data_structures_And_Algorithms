@@ -9,10 +9,11 @@ public class SortTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int nums [] = {5,2,3,1,6,8,4,7};
-		mergeSort(nums);
+		quickSort(nums);
 		for(int i:nums){
 			System.out.println(i);
 		}
+		binarySearch(nums,2);
 	}
 	
 	public static void mergeSort(int [] array)
@@ -61,6 +62,72 @@ public class SortTest {
 				array[current++]=helper[helperRight++];
 			}
 		}
+	}
+	
+	/*
+	 * Swap elements a and b in an array
+	 */
+	public static void swap(int [] array,int a,int b){
+		int temp = array[a];
+		array[a]=array[b];
+		array[b]=temp;
+	}
+	
+	/*
+	 * Call quickSort on an array
+	 */
+	public static void quickSort(int array []){
+		quickSort(array,0,array.length-1);
+	}
+	
+	/*
+	 * implement the quickSort algorithm 
+	 */
+	public static void quickSort(int array[],int left,int right){
+		int index = partition(array,left,right); //partition the array
+		if(left<index-1){//sort the left side
+			quickSort(array,left,index-1);
+		}
+		if(index<right){//sort the right side
+			quickSort(array,index,right);
+		}
+	}
+	
+	/*
+	 * Partition an array for quickSorting
+	 */
+	public static int partition(int array[],int left,int right){
+		int pivot = array[(left+right)/2];//get the middle element as the pivot(For efficiency shuffle the array)
+		while(left<=right){
+			while(array[left]<pivot)left++;//find out of place from left
+			while(array[right]>pivot)right--;//find out of place from right
+			if(left<=right){
+				swap(array,left,right);//swap the two
+				left++;
+				right--;
+			}
+		}
+		return left;
+	}
+	
+	public static void binarySearch(int [] array,int x){
+		System.out.println("Binary Search for "+x+" is : "+binarySearch(array,x,0,array.length-1));
+	}
+	
+	/*
+	 * Binary search algorithm
+	 */
+	public static int binarySearch(int [] array,int x,int left,int right){
+		if(left>right)return -1;//if the left side has crossed the right then item is not found
+		
+		int mid = (left+right)/2;//get the mid point
+		
+		if(x < array[mid])//if item is less than mid point then item is on left
+			return binarySearch(array,x,left,mid-1);
+		else if(x > array[mid])//if item is greater than mid point then item is on right
+			return binarySearch(array,x,mid+1,right);
+		else//otherwise its the middle element since its equal to the item at the mid point
+			return array[mid];
 	}
 
 }
