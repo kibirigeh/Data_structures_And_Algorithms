@@ -9,11 +9,15 @@ public class SortTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int nums [] = {5,2,3,1,6,8,4,7};
+		int numsA [] = {1,4,8,0,0,0,0},numsB [] = {2,3,5,6};
 		quickSort(nums);
 		for(int i:nums){
 			System.out.println(i);
 		}
 		binarySearch(nums,2);
+		for(int i: merge2SArrays(numsA,numsB)){
+			System.out.println(i);
+		}
 	}
 	
 	public static void mergeSort(int [] array)
@@ -128,6 +132,25 @@ public class SortTest {
 			return binarySearch(array,x,mid+1,right);
 		else//otherwise its the middle element since its equal to the item at the mid point
 			return array[mid];
+	}
+	
+	/*
+	 * Method to merge 2 sorted arrays (11.1)
+	 * Merge B into A
+	 * A has space at the end for B
+	 */
+	public static int[] merge2SArrays(int [] A,int []B){
+		int [] C = new int[A.length];//helper array C
+		int helperLeft = 0,helperRight = 0,Asize = (A.length-B.length),Bsize = (B.length),current=0;//helper iterators
+		while(current<C.length){//loop over all available spots to fill
+			if(helperLeft<Asize && helperRight<Bsize){//get if both A and B still have elements
+				if(A[helperLeft]<B[helperRight]) C[current++] = A[helperLeft++];//take from left
+				else C[current++] = B[helperRight++];//take from right
+			}
+			else if(helperRight<Bsize) C[current++] = B[helperRight++];//only right has elements
+			else C[current++] = A[helperLeft++];//only left has elements
+		}
+		return C;
 	}
 
 }
