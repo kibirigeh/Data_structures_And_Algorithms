@@ -12,8 +12,8 @@ public class CircusTower {
 	 */
 	
 	public static class Person implements Comparable{
-		int height;
-		int weight;
+		Integer height;
+		Integer weight;
 		int sum;
 		Person(int h,int w){
 			weight=w;
@@ -25,9 +25,10 @@ public class CircusTower {
 		public int compareTo(Object arg0) {
 			// TODO Auto-generated method stub
 			Person that = (Person) arg0;
-			if(this.sum<that.sum)return -1;
-			else if(this.sum>that.sum)return 1;
-			return -1;
+			if (this.height != that.height) //sort by Height first
+				return (this.height).compareTo(that.height);
+			else 
+				return this.weight.compareTo(that.weight); //then sort by Weight
 		}
 	}
 	
