@@ -12,9 +12,9 @@ public class ExistsPair {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int [] nums = {8,4,3,0,5,4,0};//list array or read in from Buffer/File
+		int [] nums = {5,4,0,5,6,0,2,14};//list array or read in from Buffer/File
 		int sum=8;//The sum required
-		boolean exists = pairExists2(nums,sum);//check if a pair exists in nums that sums up to SUM
+		boolean exists = pairExists(nums,sum);//check if a pair exists in nums that sums up to SUM
 		if(exists)System.out.println("True");
 		else System.out.println("False");
 	}
@@ -27,7 +27,10 @@ public class ExistsPair {
 		if(nums.length<1)return false;//or throw an Exception
 		HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();//map to keep track of pair<nums[i],numdifference between sum and item i
 		for(Integer i:nums){
-			if(map.contains(sum-i))return true;//check if pair exist
+			if(map.contains(sum-i)){
+				//System.out.println("Pair ("+i+","+(sum-i)+")");
+				return true;//check if pair exist
+			}
 			map.put(i,(sum-i));//store pair in map
 		}
 		return false;
