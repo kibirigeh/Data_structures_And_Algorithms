@@ -65,6 +65,11 @@ public class CircularArray<T>implements Iterable {
 			current++;
 			return myArray[convert(current)];
 		}
+		@Override
+		public void remove() {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 	/*
