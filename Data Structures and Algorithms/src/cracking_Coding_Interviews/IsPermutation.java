@@ -12,7 +12,7 @@ public class IsPermutation {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		boolean permutation = isPermutation2("abc","cab");
+		boolean permutation = isPermutation("abc","cab");
 		if(permutation)
 		{
 			System.out.println("Yes");
@@ -23,27 +23,12 @@ public class IsPermutation {
 		}
 
 	}
-	/*
-	 * method to return true if 2 strings are permutations
-	 * Uses ASCII 256 representation to get a score for each string as we go through the characters then compare the scores
-	 */
-	public static boolean isPermutation(String a,String b)
-	{
-		if(a.length()!=b.length())return false;
-		int scoreA=0,scoreB=0;
-		for(int i=0;i<a.length();i++)
-		{
-			scoreA+=a.charAt(i);
-			scoreB+=b.charAt(i);
-		}
-		return (scoreA==scoreB);
-	}
 	
 	/*
 	 * use the QuickSort algorithm that Arrays.Sort uses for primitives O(n log n)
 	 * Then compare the sorted strings
 	 */
-	public static boolean isPermutation2(String a,String b)
+	public static boolean isPermutation(String a,String b)
 	{
 		if(a.length()!=b.length())return false;
 		return sort(a).equals(sort(b));
@@ -56,4 +41,20 @@ public class IsPermutation {
 		return new String(content);
 	}
 
+	/*
+	 * method to return true if 2 strings are permutations
+	 * Uses ASCII 256 representation to get a score for each string as we go through the characters then compare the scores
+	 * This fails for test cases where the strings sum up to the same score;
+	 */
+	public static boolean isPermutation2(String a,String b)
+	{
+		if(a.length()!=b.length())return false;
+		int scoreA=0,scoreB=0;
+		for(int i=0;i<a.length();i++)
+		{
+			scoreA+=a.charAt(i);
+			scoreB+=b.charAt(i);
+		}
+		return (scoreA==scoreB);
+	}
 }
