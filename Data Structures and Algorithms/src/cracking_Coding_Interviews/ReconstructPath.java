@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 public class ReconstructPath {
 	/*
 	 * 
-	 * Find the start point in a map of Trips 
+	 * Find the start point in a map of Trips and reconstruct the itinerary
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
