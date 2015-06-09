@@ -12,7 +12,7 @@ public class CanoesNeeded {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] kids = {35,110, 111, 111, 114, 115, 149, 150};
+		int[] kids = {35, 110, 111, 111, 114, 115, 149, 150};
 		System.out.println("Canoes Needed: "+getMinCanoes(kids));
 	}
 	/*
@@ -26,6 +26,8 @@ public class CanoesNeeded {
 		for(int i=0,j=kids.length-1;i<=j;canoes++){
 			if(i==j){
 				System.out.println("Kid "+kids[i]+" gets his own canoe");
+				canoes+=1;
+				break ;
 			}
 			if(kids[i]+kids[j]>canoeMAX){
 				System.out.println("Kid "+kids[j]+" gets a canoe");
