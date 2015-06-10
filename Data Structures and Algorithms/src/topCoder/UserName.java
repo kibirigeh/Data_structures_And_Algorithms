@@ -1,6 +1,6 @@
 package topCoder;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class UserName{
 	public static String newMember(String[] names,String pref){
