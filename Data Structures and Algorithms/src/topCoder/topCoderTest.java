@@ -22,6 +22,11 @@ public class topCoderTest {
 		System.out.println("maxSongs : "+g.maxSongs(D1, TO1, T1));
 	*/
 		
+		FoxAndMp3Easy fox = new FoxAndMp3Easy();
+		for(String s:fox.playList(109)){
+			System.out.println(s);
+		}
+		
 	}
 
 }
