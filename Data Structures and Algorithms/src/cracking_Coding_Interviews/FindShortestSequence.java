@@ -30,7 +30,8 @@ public class FindShortestSequence {
 		//if the the longest sequence is found 
 		while(match.find()){
 			shortSQ=match.group();//set the shortest sequence to the found match
-			String temp = shortSQ.substring(0,shortSQ.lastIndexOf(sequence[sequence.length-1]));//then search the longest sequence for a shorter sequence
+			String temp = shortSQ.substring(0,shortSQ.lastIndexOf(sequence[sequence.length-1]));
+			temp=shortSQ.substring(temp.length()-sequence[0].length(),temp.length());//then search the longest sequence for a shorter sequence
 			match = pattern.matcher(temp);
 		}
 		return shortSQ;//return the shortest sequence if any
