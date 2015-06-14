@@ -21,12 +21,16 @@ public class topCoderTest {
 		int T1=23;
 		System.out.println("maxSongs : "+g.maxSongs(D1, TO1, T1));
 	*/
-		
+	
+	/*
 		FoxAndMp3Easy fox = new FoxAndMp3Easy();
 		for(String s:fox.playList(109)){
 			System.out.println(s);
-		}
+		}	
+	*/
 		
+		TemplateMatching mt = new TemplateMatching();
+		System.out.println(mt.bestMatch("havka","eto","papstvo"));
 	}
 
 }
