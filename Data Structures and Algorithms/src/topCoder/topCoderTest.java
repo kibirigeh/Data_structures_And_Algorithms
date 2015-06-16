@@ -28,9 +28,14 @@ public class topCoderTest {
 			System.out.println(s);
 		}	
 	*/
-		
+	
+	/*
 		TemplateMatching mt = new TemplateMatching();
 		System.out.println(mt.bestMatch("havka","eto","papstvo"));
+	*/
+		
+		Refactoring rf = new Refactoring();
+		System.out.println(rf.refactor(18));
 	}
 
 }
