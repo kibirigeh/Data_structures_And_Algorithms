@@ -13,6 +13,8 @@ public class Bases {
 		System.out.println(Integer.toBinaryString(5));
 		System.out.println(Integer.toOctalString(10));
 		System.out.println(Integer.toHexString(10));
+		swap(9,4);
+		System.out.println(add(9,2));
 	}
 	
 	public static int toDecimal1(int n,int b){
@@ -39,6 +41,23 @@ public class Bases {
 		}
 		return result;
 	}
-	
+	/*
+	 * Swap 2 numbers in-place
+	 */
+	public static void swap(int a,int b){
+		a=a^b;
+		b=a^b;
+		a=a^b;
+		System.out.println("a: "+a+" b: "+b);
+	}
+	/*
+	 * Add without any arithmetic operations
+	 */
+	public static int add(int a,int b){
+		if(b==0)return a;
+		int sum=a^b;
+		int carry =(a&b)<<1;
+		return add(sum,carry);
+	}
 
 }
